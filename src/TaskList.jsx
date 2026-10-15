@@ -6,9 +6,9 @@ export default function TaskList() {
     return (
         <div className="task-list">
             {tasks.length === 0 ? (
-                <p className="empty-state">No Tasks To Display</p>
+                <p className="empty-state">Nothing on your list yet. Add your first task above.</p>
             ) : (
-                tasks.map((task) => <TaskItem key={task.id} id={task.id} name={task.name}  completed={task.completed}/>)
+                tasks.map((task) => <TaskItem key={task.id} id={task.id} name={task.name} completed={task.completed}/>)
             )}
         </div>
     );

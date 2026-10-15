@@ -8,14 +8,11 @@ export default function TaskInput() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        // 1. Validate first
         if (task.trim().length === 0) {
-            setError('Task cannot be blank.');
+            setError('Enter a task name to add it.');
             return;
         }
 
-        // 2. Process success
         setError('');
         addTask(task.trim());
         setTask('');
@@ -26,20 +23,22 @@ export default function TaskInput() {
             <div className="form-wrapper">
                 <div className="form-row">
                     <label htmlFor="task">Task</label>
-                    <input 
-                        type="text" 
-                        name="task" 
-                        id="task" 
-                        value={task} 
+                    <input
+                        type="text"
+                        name="task"
+                        id="task"
+                        value={task}
                         onChange={(e) => {
                             setTask(e.target.value);
                             if (error) setError('');
                         }}
-                        placeholder="Enter a new task..."
+                        placeholder="What needs doing?"
+                        aria-invalid={error ? 'true' : 'false'}
+                        aria-describedby={error ? 'task-error' : undefined}
                     />
-                    <button type="submit">Add</button>
+                    <button type="submit">Add task</button>
                 </div>
-                {error && <p className="error-text">{error}</p>}
+                {error && <p className="error-text" id="task-error" role="alert">{error}</p>}
             </div>
         </form>
     );
